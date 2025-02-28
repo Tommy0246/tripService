@@ -24,9 +24,9 @@ public class TripController {
         return tripService.getTripList();
     }
 
-    @PostMapping("/trips")
+    @PostMapping("/trip")
     public ResponseEntity<Trip> addTrip(@RequestBody Trip trip) throws URISyntaxException {
         tripService.addTrip(trip);
-        return ResponseEntity.created(new URI("/trips/" + trip.getTripReference())).body(trip);
+        return ResponseEntity.created(new URI("/trip/" + trip.getTripReference())).body(trip);
     }
 }
