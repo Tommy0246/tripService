@@ -16,4 +16,20 @@ spec:
         - image: marievrt/tripservice:1
           imagePullPolicy: IfNotPresent
           name: tripservice
+          env:
+            - name: DB_HOST
+              value: "mysql"
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+            - name: DB_NAME
+              value: "trip_db"
+          ports:    
+            - containerPort: 8080 
       restartPolicy: Always

@@ -1,14 +1,28 @@
 package efrei.net.tripservice.data;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "trips")
 public class Trip {
-    private String destination;
+    @Id
     private String tripReference;
+    private String destination;
     private int price;
+
+    @OneToMany(mappedBy = "trip", fetch = FetchType.LAZY)
+    private List<Dates> dates;
 
     public Trip(String destination, String tripReference, int price) {
         this.destination = destination;
         this.tripReference = tripReference;
         this.price = price;
+    }
+
+    public Trip() {
+
     }
 
     public String getDestination() {
